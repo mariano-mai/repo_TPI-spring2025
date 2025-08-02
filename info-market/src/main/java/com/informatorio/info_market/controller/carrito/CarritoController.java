@@ -18,7 +18,7 @@ public class CarritoController {
     private CarritoService carritoService;
 
     @PostMapping("agregarProducto/{idUser}/{idProducto}")
-    public ResponseEntity agregarProducto(
+    public ResponseEntity<?> agregarProducto(
             @PathVariable UUID idUser,
             @PathVariable UUID idProducto) {
 

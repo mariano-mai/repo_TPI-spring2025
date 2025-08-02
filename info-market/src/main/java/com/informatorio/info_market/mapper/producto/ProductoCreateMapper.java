@@ -5,7 +5,6 @@ import com.informatorio.info_market.domain.Producto;
 import com.informatorio.info_market.dto.producto.ProductoCreateDto;
 import com.informatorio.info_market.exception.notfound.NotFoundException;
 import com.informatorio.info_market.repository.categoria.CategoriaRepository;
-import jakarta.persistence.EntityNotFoundException;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;

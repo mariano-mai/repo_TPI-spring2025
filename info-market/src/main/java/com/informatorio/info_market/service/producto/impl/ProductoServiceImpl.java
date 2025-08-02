@@ -10,9 +10,14 @@ import com.informatorio.info_market.mapper.producto.ProductoMapper;
 import com.informatorio.info_market.repository.producto.ProductoRepository;
 import com.informatorio.info_market.service.producto.ProductoService;
 import lombok.AllArgsConstructor;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -24,8 +29,11 @@ public class ProductoServiceImpl implements ProductoService {
     private final ProductoRepository productoRepository;
 
     private final ProductoMapper productoMapper;
-
+    
+    @Autowired
     private final ProductoCreateMapper productoCreateMapper;
+    
+    
 
     @Override
     public List<ProductoDto> getAllProductos(int minStock, Double minPrice, Double maxPrice) {
@@ -114,9 +122,9 @@ public class ProductoServiceImpl implements ProductoService {
 
         if (productoRepository.existsById( id )){
             productoRepository.deleteById(id);
-        }
+        }else {
 
-        throw new NotFoundException("No se encontro el producto con id : " + id);
+        throw new NotFoundException("No se encontro el producto con id : " + id);}
     }
 
     @Override
@@ -130,5 +138,19 @@ public class ProductoServiceImpl implements ProductoService {
                 .map(productoMapper::productoToProductoDto)
                 .toList();
     }
+
+	@Override
+	public List<ProductoDto> getProductosMasCaros() {
+		List<Producto> productos = productoRepository.findAll();
+		Collections.sort(productos, Comparator.comparingDouble(producto -> producto.getPrecio()));
+		Collections.reverse(productos);
+		List<Producto> losMasCaros = new ArrayList<>();
+		for(int i=0; i<10; i++) {
+			losMasCaros.add(productos.get(i));
+		}
+		return losMasCaros.stream()
+				.map(producto -> productoMapper.productoToProductoDto(producto))
+				.toList();
+	}
 
 }

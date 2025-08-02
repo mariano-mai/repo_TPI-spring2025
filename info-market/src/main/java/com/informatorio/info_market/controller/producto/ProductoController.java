@@ -149,6 +149,11 @@ public class ProductoController {
     public ProductoDto getProductoById(@PathVariable UUID productoId) {
         return productoService.getProductoById(productoId);
     }
+    
+    @GetMapping("/productosMasCaros")
+    public List<ProductoDto> getDiezProductosMasCaros(){
+    	return productoService.getProductosMasCaros();
+    }
 
     @Operation(
             summary = "Delete para eliminar un producto",

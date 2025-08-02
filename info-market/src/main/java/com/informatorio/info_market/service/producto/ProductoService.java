@@ -23,4 +23,6 @@ public interface ProductoService {
     void deleteProducto(UUID id);
 
     List<ProductoDto> testProductsQueries();
+    
+    List<ProductoDto> getProductosMasCaros();
 }
