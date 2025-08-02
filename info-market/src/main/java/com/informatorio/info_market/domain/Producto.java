@@ -34,7 +34,7 @@ public class Producto {
     private LocalDate fechaActualizacion;
 
     @ManyToMany
-    @JoinTable(name = "producto_categoria",
+    @JoinTable(name = "producto_categorias",
     	joinColumns = @JoinColumn(name = "producto_id"),
     	inverseJoinColumns = @JoinColumn(name = "categorias_id"))
     private List<Categoria> categorias;

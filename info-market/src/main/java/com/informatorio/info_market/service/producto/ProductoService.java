@@ -24,5 +24,5 @@ public interface ProductoService {
 
     List<ProductoDto> testProductsQueries();
     
-    List<ProductoDto> getProductosMasCaros();
+    List<String> getMarcasMasCotizadas();
 }

@@ -150,9 +150,9 @@ public class ProductoController {
         return productoService.getProductoById(productoId);
     }
     
-    @GetMapping("/productosMasCaros")
-    public List<ProductoDto> getDiezProductosMasCaros(){
-    	return productoService.getProductosMasCaros();
+    @GetMapping("/marcasMasCotizadas")
+    public List<String> getDiezProductosMasCaros(){
+    	return productoService.getMarcasMasCotizadas();
     }
 
     @Operation(

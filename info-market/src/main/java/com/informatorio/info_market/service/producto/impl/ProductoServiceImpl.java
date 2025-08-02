@@ -140,7 +140,19 @@ public class ProductoServiceImpl implements ProductoService {
     }
 
 	@Override
-	public List<ProductoDto> getProductosMasCaros() {
+	public List<String> getMarcasMasCotizadas() {
+		List<String> listaDeMarcas = new ArrayList<>();
+		for(Producto producto1 : getProductosMasCaros()) {
+			String nombre = producto1.getMarca();
+			if(!listaDeMarcas.contains(nombre)) {
+				listaDeMarcas.add(nombre);
+			}
+			
+		}
+		return listaDeMarcas;
+	}
+	
+	private List<Producto> getProductosMasCaros() {
 		List<Producto> productos = productoRepository.findAll();
 		Collections.sort(productos, Comparator.comparingDouble(producto -> producto.getPrecio()));
 		Collections.reverse(productos);
@@ -148,9 +160,7 @@ public class ProductoServiceImpl implements ProductoService {
 		for(int i=0; i<10; i++) {
 			losMasCaros.add(productos.get(i));
 		}
-		return losMasCaros.stream()
-				.map(producto -> productoMapper.productoToProductoDto(producto))
-				.toList();
+		return losMasCaros;
 	}
 
 }
