@@ -28,6 +28,11 @@ public class ProductoCreateDto {
     @NotBlank(message = "La descripcion del producto no puede estar vacio")
     @Size(max = 50, message = "La despcion debe tener como maximo 50 caracteres")
     private String descripcion;
+    
+    @Schema(description = "Marca del producto", example = "Suprema")
+    @NotBlank(message = "La marca del producto no puede estar vacio")
+    @Size(max = 50, message = "La marca debe tener como maximo 50 caracteres")
+    private String marca;
 
     @Schema(description = "Precio del producto", example = "35999.00")
     @Min(value = 0, message = "Se debe tener un precio minimo de 0")
@@ -46,14 +51,19 @@ public class ProductoCreateDto {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ProductoCreateDto(@NotBlank(message = "El nombre del producto no puede estar vacio") String nombre,
-			@NotBlank(message = "La descripcion del producto no puede estar vacio") @Size(max = 50, message = "La despcion debe tener como maximo 50 caracteres") String descripcion,
+	public ProductoCreateDto(
+			@NotBlank(message = "El nombre del producto no puede estar vacio") String nombre,
+			@NotBlank(message = "La descripcion del producto no puede estar vacio") 
+			@Size(max = 50, message = "La despcion debe tener como maximo 50 caracteres") String descripcion,
+			@NotBlank(message = "La marca del producto no puede estar vacio") 
+			@Size(max = 50, message = "La marca debe tener como maximo 50 caracteres") String marca,
 			@Min(value = 0, message = "Se debe tener un precio minimo de 0") double precio,
 			@Min(value = 0, message = "Se debe tener un stock minimo de 0") int stock,
 			@NotEmpty(message = "Se debe tener como minimo una categoria para el producto") List<Long> categorias) {
 		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
+		this.marca = marca;
 		this.precio = precio;
 		this.stock = stock;
 		this.categorias = categorias;
@@ -97,6 +107,14 @@ public class ProductoCreateDto {
 
 	public void setCategorias(List<Long> categorias) {
 		this.categorias = categorias;
+	}
+
+	public String getMarca() {
+		return marca;
+	}
+
+	public void setMarca(String marca) {
+		this.marca = marca;
 	}
     
     

@@ -25,6 +25,9 @@ public class ProductoDto {
 
     @Schema(description = "Descripcion del producto", example = "Hidratación profunda para cabello seco")
     private String descripcion;
+    
+    @Schema(description = "Marca del producto", example = "Suprema")
+    private String marca;
 
     @Schema(description = "Precio del producto", example = "35999.00")
     private double precio;

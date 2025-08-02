@@ -19,6 +19,7 @@ public class ProductoMapperImpl implements ProductoMapper {
         productoDto.setId(producto.getId());
         productoDto.setNombre(producto.getNombre());
         productoDto.setDescripcion(producto.getDescripcion());
+        productoDto.setMarca(producto.getMarca());
         productoDto.setStock( producto.getStock() );
         productoDto.setPrecio(producto.getPrecio());
 
