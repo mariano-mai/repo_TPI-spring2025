@@ -150,6 +150,22 @@ public class ProductoController {
         return productoService.getProductoById(productoId);
     }
     
+    @ApiResponses({
+        @ApiResponse(
+                responseCode = "200",
+                description = "HTTP Request Success",
+                content = @Content(
+                        schema = @Schema(implementation = ProductoDto.class)
+                )
+        ),
+        @ApiResponse(
+                responseCode = "404",
+                description = "HTTP Status NOT FOUND",
+                content = @Content(
+                        schema = @Schema(implementation = ErrorResponseDto.class)
+                )
+        )
+    })
     @GetMapping("/marcasMasCotizadas")
     public List<String> getDiezProductosMasCaros(){
     	return productoService.getMarcasMasCotizadas();
