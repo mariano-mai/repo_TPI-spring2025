@@ -150,6 +150,10 @@ public class ProductoController {
         return productoService.getProductoById(productoId);
     }
     
+    @Operation(
+            summary = "Get para obtener los nombres de las marcas con los diez productos más caros.",
+            description = "REST API para obtener los nombres de las marcas con los diez productos más caros."
+    )
     @ApiResponses({
         @ApiResponse(
                 responseCode = "200",
