@@ -154,13 +154,25 @@ public class ProductoServiceImpl implements ProductoService {
 	
 	private List<Producto> getProductosMasCaros() {
 		List<Producto> productos = productoRepository.findAll();
-		Collections.sort(productos, Comparator.comparingDouble(producto -> producto.getPrecio()));
-		Collections.reverse(productos);
-		List<Producto> losMasCaros = new ArrayList<>();
-		for(int i=0; i<10; i++) {
-			losMasCaros.add(productos.get(i));
+		if(!productos.isEmpty()) {
+			Collections.sort(productos, Comparator.comparingDouble(producto -> producto.getPrecio()));
+			Collections.reverse(productos);
+			int largo = productos.size();
+			List<Producto> losMasCaros = new ArrayList<>();
+			if(largo<10) {
+				for(int i=0; i<largo; i++) {
+					losMasCaros.add(productos.get(i));
+				}
+			}else {
+				for(int i=0; i<10; i++) {
+					losMasCaros.add(productos.get(i));
+				}
+			}
+			return losMasCaros;
+		}else {
+			throw new NotFoundException("No hay Productos en la Base de Datos.");
 		}
-		return losMasCaros;
+		
 	}
 
 }
